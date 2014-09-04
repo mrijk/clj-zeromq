@@ -11,3 +11,4 @@
     (socket-connect s "tcp://127.0.01:5555")
     (socket-close s)))
     
+(listen-to-logstash)
