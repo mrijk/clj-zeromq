@@ -1,4 +1,5 @@
-(ns clj-zeromq.socket-base)
+(ns clj-zeromq.socket-base
+  (:use clj-zeromq.tcp-listener))
 
 ;;; Sub.java
 
@@ -17,13 +18,17 @@
     (throw (UnsupportedOperationException. protocol)))
 )
 
-(defn- add-tcp-listener [addr])
+(defn- add-tcp-listener [addr]
+  (let [listener (create-tcp-listener)]
+    (tcp-listener-set-address listener addr)
+    ))
 
 (defn socket-base-connect [socket addr]
   (let [uri (java.net.URI. addr)
-        protocol (.getScheme uri)]
+        protocol (.getScheme uri)
+        address (.getAuthority uri)]
     (check-protocol protocol)
     (if (= protocol "tcp")
-      (add-tcp-listener addr))))
+      (add-tcp-listener address))))
 
 

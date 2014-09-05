@@ -5,7 +5,7 @@
 (deftest valid-address
   (testing "Valid address"
     (is (instance? java.net.InetSocketAddress
-                   (create-tcp-address "gmail.com:8080")))))
+                   (create-tcp-address "127.0.0.1:8080")))))
 
 (deftest missing-port
   (testing "Missing port"

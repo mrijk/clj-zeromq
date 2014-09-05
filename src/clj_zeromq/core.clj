@@ -8,7 +8,7 @@
   []
   (let [s (ctx-create-socket ctx zmq-sub)]
     (socket-subscribe s "")
-    (socket-connect s "tcp://127.0.01:5555")
+    (socket-connect s "tcp://127.0.0.1:5555")
     (socket-close s)))
     
 (listen-to-logstash)
